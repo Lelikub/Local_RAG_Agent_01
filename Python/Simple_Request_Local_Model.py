@@ -54,7 +54,7 @@ def get_model_response(topic):
 
 if __name__ == "__main__":
     # Задание темы для запроса к модели
-    topic = 'Объясни понятие RAG (Retrieval-Augmented Generation).' # Вопрос пользователя
+    topic = 'Расскажи про 3 статью 1 главы Налогового Кодекса РФ' # Вопрос пользователя
     logger.debug(topic)
 
     # Получение ответа от модели на заданную тему
