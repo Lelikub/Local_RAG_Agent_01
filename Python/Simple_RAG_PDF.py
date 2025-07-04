@@ -26,14 +26,14 @@ def get_index_db():
     logger.debug('Embeddings')
     from langchain_huggingface import HuggingFaceEmbeddings
     model_id = 'intfloat/multilingual-e5-large'
-    model_kwargs = {'device': 'cpu'} # Настройка для использования CPU (можно переключить на GPU)
-    #model_kwargs = {'device': 'cuda'}
+    #model_kwargs = {'device': 'cpu'} # Настройка для использования CPU (можно переключить на GPU)
+    model_kwargs = {'device': 'cuda'}
     embeddings = HuggingFaceEmbeddings(
         model_name=model_id,
         model_kwargs=model_kwargs
     )
 
-    db_file_name = 'db/db_01'
+    db_file_name = 'Python/db/db_01'
     # Загрузка векторной Базы-Знаний из файла
     logger.debug('Загрузка векторной Базы-Знаний из файла')
     file_path = db_file_name + "/index.faiss"
@@ -52,7 +52,7 @@ def get_index_db():
         ## PyPDFLoader: https://python.langchain.com/docs/modules/data_connection/document_loaders/pdf
         from langchain_community.document_loaders import PyPDFLoader
 
-        dir = '\pdf'
+        dir = 'Python/pdf'
         logger.debug(f'Document loaders. dir={dir}')
         documents = []
         # Чтение всех PDF-файлов в указанной директории
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     # Основной блок программы: инициализация, построение базы и генерация ответа
     db = get_index_db()
     NUMBER_RELEVANT_CHUNKS = 3 # Количество релевантных кусков для извлечения
-    topic = 'Расскажи про 3 статью 1 главы Налогового Кодекса РФ' # Вопрос пользователя
+    topic = 'Расскажи про главу 1, статью 3 Налогового Кодекса РФ' # Вопрос пользователя
     logger.debug(topic)
     message_content = get_message_content(topic, db, NUMBER_RELEVANT_CHUNKS)
     model_response = get_model_response(topic, message_content)
