@@ -137,7 +137,7 @@ def get_model_response(topic, message_content):
 if __name__ == "__main__":
     # Основной блок программы: инициализация, построение базы и генерация ответа
     db = get_index_db()
-    NUMBER_RELEVANT_CHUNKS = 3 # Количество релевантных кусков для извлечения
+    NUMBER_RELEVANT_CHUNKS = 20 # Количество релевантных кусков для извлечения
     topic = 'Расскажи про главу 1, статью 3 Налогового Кодекса РФ' # Вопрос пользователя
     logger.debug(topic)
     message_content = get_message_content(topic, db, NUMBER_RELEVANT_CHUNKS)

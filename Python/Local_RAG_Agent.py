@@ -23,8 +23,7 @@ load_dotenv()
 # Получение API ключа из переменных окружения
 # Аккаунт нужно создать здесь: https://tavily.com/
 TAVILY_API_KEY = os.environ.get("TAVILY_API_KEY")
-os.environ["TAVILY_API_KEY"] = TAVILY_API_KEY
-
+os.environ["TAVILY_API_KEY"] = "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"
 # Настройка логирования с использованием loguru
 logger.add("log/Local_RAG_Agent.log", format="{time} {level} {message}", level="DEBUG", rotation="100 KB", compression="zip")
 
@@ -149,7 +148,7 @@ def get_index_db():
         model_kwargs=model_kwargs
     )
 
-    db_file_name = 'db/db_01'
+    db_file_name = 'Python/db/db_01'
     # Загрузка векторной Базы-Знаний из файла
     logger.debug('Загрузка векторной Базы-Знаний из файла')
     file_path = db_file_name + "/index.faiss"
@@ -168,7 +167,7 @@ def get_index_db():
         ## PyPDFLoader: https://python.langchain.com/docs/modules/data_connection/document_loaders/pdf
         from langchain_community.document_loaders import PyPDFLoader
 
-        dir = 'pdf'
+        dir = 'Python/pdf'
         logger.debug(f'Document loaders. dir={dir}')
         documents = []
         # Чтение всех PDF-файлов в указанной директории
@@ -511,7 +510,7 @@ img = PILImage.open("../graph_image.png")
 img.show()
 
 if __name__ == "__main__":
-    inputs = {"question": "О чем теорема Ферма? Для чего ее используют?", "max_retries": 3}
+    inputs = {"question": "Расскажи про 3 статью 1-ой главы Налогового Кодекса РФ?", "max_retries": 3}
 
     for event in graph.stream(inputs, stream_mode="values"):
         logger.debug(event)
